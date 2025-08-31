@@ -1,162 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Undercoded - Connect & Create</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undercoded Landing</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
-  <style>
-    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
-    .fade-in.show { opacity: 1; transform: translateY(0); }
-  </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="font-sans bg-gray-50 text-gray-900">
 
   <!-- Navbar -->
-  <header class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-      <h1 class="text-2xl font-bold">Undercoded</h1>
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex space-x-6">
-        <a href="#features" class="hover:text-indigo-600">Features</a>
-        <a href="#creators" class="hover:text-indigo-600">Creators</a>
-        <a href="#about" class="hover:text-indigo-600">About</a>
-      </nav>
-      <div class="hidden md:flex space-x-4">
-        <button onclick="openLoginModal()" class="px-4 py-2 rounded-full border border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white transition">Log In</button>
-        <button onclick="openJoinModal()" class="px-4 py-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition">Sign Up</button>
+  <nav class="bg-white shadow fixed w-full top-0 left-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center h-16">
+      <a href="#" class="text-2xl font-bold">Undercoded</a>
+      <div class="space-x-6 hidden md:flex">
+        <a href="#features" class="hover:text-blue-600">Features</a>
+        <a href="#about" class="hover:text-blue-600">About</a>
+        <a href="#contact" class="hover:text-blue-600">Contact</a>
       </div>
-      <!-- Mobile Menu Button -->
-      <button id="menu-btn" class="md:hidden">
-        <i data-feather="menu"></i>
-      </button>
     </div>
-    <!-- Mobile Nav -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
-      <nav class="flex flex-col space-y-2 px-6 py-4">
-        <a href="#features" class="hover:text-indigo-600">Features</a>
-        <a href="#creators" class="hover:text-indigo-600">Creators</a>
-        <a href="#about" class="hover:text-indigo-600">About</a>
-        <button onclick="openLoginModal()" class="w-full text-left text-indigo-600">Log In</button>
-        <button onclick="openJoinModal()" class="w-full text-left text-white bg-indigo-600 rounded px-4 py-2">Sign Up</button>
-      </nav>
-    </div>
-  </header>
+  </nav>
 
   <!-- Hero Section -->
-  <section class="relative bg-cover bg-center h-screen flex items-center justify-center text-center" style="background-image: url('https://images.unsplash.com/photo-1529101091764-c3526daf38fe?auto=format&fit=crop&w=1600&q=80');">
-    <div class="bg-black bg-opacity-50 absolute inset-0"></div>
-    <div class="relative z-10 text-white max-w-3xl px-6 fade-in">
-      <h2 class="text-5xl font-bold mb-6">Where Creativity Meets Connection</h2>
-      <p class="text-xl mb-8">Join millions of creators and communities building the future of expression.</p>
-      <div class="flex justify-center space-x-4">
-        <a href="#" onclick="openJoinModal()" class="px-8 py-3 bg-indigo-600 rounded-full text-lg font-semibold hover:bg-indigo-700 transition">Join the Movement</a>
-        <a href="#" onclick="openLoginModal()" class="px-8 py-3 bg-white text-black rounded-full text-lg font-semibold hover:bg-gray-200 transition">Log In</a>
+  <section class="pt-32 pb-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="text-5xl font-bold mb-6">Welcome to Undercoded</h1>
+      <p class="text-lg mb-8">A next-gen platform to connect, create, and discover with ease.</p>
+      <a href="#features" class="px-6 py-3 bg-white text-blue-600 rounded-xl font-semibold shadow hover:bg-gray-100 transition">Explore Features</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12">Features</h2>
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        
+        <!-- Feature 1 -->
+        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" 
+               class="rounded-xl mb-4 mx-auto shadow" alt="Global Reach">
+          <h3 class="text-xl font-semibold mb-2">Global Reach</h3>
+          <p class="text-gray-600">Connect with millions worldwide instantly.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" 
+               class="rounded-xl mb-4 mx-auto shadow" alt="Built for Artists">
+          <h3 class="text-xl font-semibold mb-2">Built for Artists</h3>
+          <p class="text-gray-600">Showcase your creativity with style.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+          <img src="https://images.unsplash.com/photo-1508931132048-61f7f07e99c2" 
+               class="rounded-xl mb-4 mx-auto shadow" alt="Smart Discovery">
+          <h3 class="text-xl font-semibold mb-2">Smart Discovery</h3>
+          <p class="text-gray-600">Find content you’ll truly love with AI-powered feeds.</p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section id="features" class="py-24 bg-gray-100">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h3 class="text-4xl font-bold mb-12 fade-in">Powerful Features</h3>
-      <div class="grid md:grid-cols-3 gap-10">
-        <div class="fade-in">
-          <img src="https://source.unsplash.com/400x300/?global" class="rounded-xl mb-4 mx-auto shadow" alt="Global Reach">
-          <h4 class="text-xl font-semibold mb-2">Global Reach</h4>
-          <p>Connect with people worldwide instantly and share your passion with a global audience.</p>
-        </div>
-        <div class="fade-in">
-          <img src="https://source.unsplash.com/400x300/?art,creative" class="rounded-xl mb-4 mx-auto shadow" alt="Built for Artists">
-          <h4 class="text-xl font-semibold mb-2">Built for Artists</h4>
-          <p>Designed with creators in mind, making it easier than ever to showcase your work.</p>
-        </div>
-        <div class="fade-in">
-          <img src="https://source.unsplash.com/400x300/?city,street" class="rounded-xl mb-4 mx-auto shadow" alt="Smart Discovery">
-          <h4 class="text-xl font-semibold mb-2">Smart Discovery</h4>
-          <p>Discover trending communities and get recommended content tailored for you.</p>
-        </div>
-      </div>
+  <!-- About -->
+  <section id="about" class="py-20">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-6">About Us</h2>
+      <p class="text-lg text-gray-700 leading-relaxed">
+        Undercoded is built to empower creators, innovators, and dreamers. Our mission is to 
+        provide tools that make sharing, discovering, and connecting seamless across the globe.
+      </p>
     </div>
   </section>
 
-  <!-- Creators Section -->
-  <section id="creators" class="py-24">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-      <div class="fade-in">
-        <h3 class="text-4xl font-bold mb-6">Made for Creators</h3>
-        <p class="text-lg mb-6">Whether you’re an artist, a storyteller, or a dreamer, Undercoded gives you the tools to shine and the stage to share.</p>
-        <a href="#" onclick="openJoinModal()" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition">Start Creating</a>
-      </div>
-      <div class="fade-in">
-        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80" alt="Creators" class="rounded-xl shadow">
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-24 bg-gray-100">
-    <div class="max-w-4xl mx-auto text-center fade-in">
-      <h3 class="text-4xl font-bold mb-6">About Undercoded</h3>
-      <p class="text-lg">Undercoded is more than a platform—it’s a movement. We’re building the future of digital connection, powered by creativity and community.</p>
+  <!-- Contact -->
+  <section id="contact" class="py-20 bg-gray-100">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-6">Get in Touch</h2>
+      <p class="mb-8 text-gray-700">We’d love to hear from you! Send us a message anytime.</p>
+      <form class="max-w-xl mx-auto text-left bg-white p-8 rounded-2xl shadow">
+        <input type="text" placeholder="Your Name" class="w-full p-3 border rounded-lg mb-4">
+        <input type="email" placeholder="Your Email" class="w-full p-3 border rounded-lg mb-4">
+        <textarea placeholder="Your Message" class="w-full p-3 border rounded-lg mb-4"></textarea>
+        <button class="w-full bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:bg-blue-700 transition">Send Message</button>
+      </form>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black text-white py-8 text-center">
-    <p>&copy; 2025 Undercoded. All rights reserved.</p>
+  <footer class="py-6 bg-white shadow text-center text-gray-600">
+    © 2025 Undercoded. All rights reserved.
   </footer>
 
-  <!-- Login Modal -->
-  <div id="loginModal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div class="bg-white rounded-lg p-8 max-w-md w-full relative">
-      <button onclick="closeLoginModal()" class="absolute top-3 right-3"><i data-feather="x"></i></button>
-      <h3 class="text-2xl font-bold mb-4">Log In</h3>
-      <input type="email" placeholder="Email" class="w-full mb-3 px-4 py-2 border rounded">
-      <input type="password" placeholder="Password" class="w-full mb-6 px-4 py-2 border rounded">
-      <button class="w-full py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Log In</button>
-    </div>
-  </div>
-
-  <!-- Join Modal -->
-  <div id="joinModal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div class="bg-white rounded-lg p-8 max-w-md w-full relative">
-      <button onclick="closeJoinModal()" class="absolute top-3 right-3"><i data-feather="x"></i></button>
-      <h3 class="text-2xl font-bold mb-4">Sign Up</h3>
-      <input type="text" placeholder="Username" class="w-full mb-3 px-4 py-2 border rounded">
-      <input type="email" placeholder="Email" class="w-full mb-3 px-4 py-2 border rounded">
-      <input type="password" placeholder="Password" class="w-full mb-6 px-4 py-2 border rounded">
-      <button class="w-full py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Create Account</button>
-    </div>
-  </div>
-
-  <!-- Scripts -->
-  <script>
-    feather.replace();
-
-    // Fade in animation
-    const faders = document.querySelectorAll('.fade-in');
-    const appearOnScroll = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('show');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    faders.forEach(fader => appearOnScroll.observe(fader));
-
-    // Mobile menu toggle
-    document.getElementById("menu-btn").addEventListener("click", () => {
-      document.getElementById("mobile-menu").classList.toggle("hidden");
-    });
-
-    // Modals
-    function openLoginModal(){ document.getElementById("loginModal").classList.remove("hidden"); }
-    function closeLoginModal(){ document.getElementById("loginModal").classList.add("hidden"); }
-    function openJoinModal(){ document.getElementById("joinModal").classList.remove("hidden"); }
-    function closeJoinModal(){ document.getElementById("joinModal").classList.add("hidden"); }
-  </script>
 </body>
 </html>
