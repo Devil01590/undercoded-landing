@@ -1,97 +1,818 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
+  <!-- =========================================================
+       UNDercoded - Ultimate Landing (Single HTML, 500+ lines)
+       Author: You
+       Notes: Tailwind via CDN, zero build step, GitHub Pages ready
+       ========================================================= -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Undercoded Landing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Undercoded — Create. Inspire. Belong.</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Undercoded is a modern platform for creators. Share your art, find your people, and build a brand that belongs on the global stage." />
+  <meta name="keywords" content="Undercoded, creators, portfolio, landing page, social platform" />
+  <meta name="author" content="Undercoded" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 256 256'%3E%3Cpath d='M128 24a104 104 0 1 0 104 104A104.12 104.12 0 0 0 128 24Zm0 192a88 88 0 1 1 88-88 88.1 88.1 0 0 1-88 88Zm-8-144h16v80h-16Zm0 96h16v16h-16Z'/%3E%3C/svg%3E" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Undercoded — Create. Inspire. Belong." />
+  <meta property="og:description" content="A home for creators: launch your portfolio, grow your audience, and discover what's next." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1529101091764-c3526daf38fe?auto=format&fit=crop&w=1200&q=80" />
+  <meta property="og:url" content="https://example.com" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Undercoded — Create. Inspire. Belong." />
+  <meta name="twitter:description" content="A home for creators: launch your portfolio, grow your audience, and discover what's next." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1529101091764-c3526daf38fe?auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Tailwind CSS (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Feather Icons (CDN) -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <!-- Custom styles -->
+  <style>
+    /* Subtle reveal animation */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+
+    /* Simple marquee-like gradient shine on logos */
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .shine::after {
+      content: "";
+      position: absolute;
+      top: 0; left: -150%;
+      height: 100%; width: 50%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: skewX(-18deg);
+      animation: sweep 4s linear infinite;
+    }
+    @keyframes sweep {
+      0% { left: -150%; }
+      100% { left: 150%; }
+    }
+
+    /* FAQ */
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+    .faq-item.open .faq-answer { max-height: 480px; }
+
+    /* Simple carousel for testimonials */
+    .carousel-track { display: flex; transition: transform .5s ease; }
+  </style>
+
+  <!-- Lightweight schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Undercoded",
+    "url":"https://example.com",
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://example.com/?q={search_term_string}",
+      "query-input":"required name=search_term_string"
+    }
+  }
+  </script>
 </head>
-<body class="font-sans bg-gray-50 text-gray-900">
+<body class="bg-white text-gray-900 antialiased">
 
-  <!-- Navbar -->
-  <nav class="bg-white shadow fixed w-full top-0 left-0 z-50">
-    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center h-16">
-      <a href="#" class="text-2xl font-bold">Undercoded</a>
-      <div class="space-x-6 hidden md:flex">
-        <a href="#features" class="hover:text-blue-600">Features</a>
-        <a href="#about" class="hover:text-blue-600">About</a>
-        <a href="#contact" class="hover:text-blue-600">Contact</a>
+  <!-- =========================================================
+       NAVBAR
+       ========================================================= -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="h-16 flex items-center justify-between">
+        <!-- Brand -->
+        <a href="#" class="flex items-center gap-2 group">
+          <span class="inline-grid place-items-center h-9 w-9 rounded-xl bg-black text-white">U</span>
+          <span class="font-extrabold tracking-tight text-lg group-hover:text-black">undercoded</span>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center gap-8 text-sm">
+          <a href="#features" class="hover:text-black text-gray-600">Features</a>
+          <a href="#gallery" class="hover:text-black text-gray-600">Gallery</a>
+          <a href="#pricing" class="hover:text-black text-gray-600">Pricing</a>
+          <a href="#faq" class="hover:text-black text-gray-600">FAQ</a>
+          <a href="#blog" class="hover:text-black text-gray-600">Blog</a>
+          <a href="#contact" class="hover:text-black text-gray-600">Contact</a>
+          <button onclick="openLoginModal()" class="px-4 py-2 rounded-full border border-black text-black hover:bg-black hover:text-white transition">Log In</button>
+          <button onclick="openJoinModal()" class="px-4 py-2 rounded-full bg-black text-white hover:bg-gray-900 transition">Sign Up</button>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-md hover:bg-gray-100" aria-label="Open menu">
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+
+      <!-- Mobile nav -->
+      <div id="mobileMenu" class="hidden md:hidden pb-4">
+        <nav class="grid gap-2 text-sm">
+          <a href="#features" class="px-3 py-2 rounded hover:bg-gray-100">Features</a>
+          <a href="#gallery" class="px-3 py-2 rounded hover:bg-gray-100">Gallery</a>
+          <a href="#pricing" class="px-3 py-2 rounded hover:bg-gray-100">Pricing</a>
+          <a href="#faq" class="px-3 py-2 rounded hover:bg-gray-100">FAQ</a>
+          <a href="#blog" class="px-3 py-2 rounded hover:bg-gray-100">Blog</a>
+          <a href="#contact" class="px-3 py-2 rounded hover:bg-gray-100">Contact</a>
+          <div class="flex gap-3 px-3 pt-2">
+            <button onclick="openLoginModal()" class="flex-1 px-4 py-2 rounded-full border border-black text-black hover:bg-black hover:text-white transition">Log In</button>
+            <button onclick="openJoinModal()" class="flex-1 px-4 py-2 rounded-full bg-black text-white hover:bg-gray-900 transition">Sign Up</button>
+          </div>
+        </nav>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <!-- Hero Section -->
-  <section class="pt-32 pb-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center">
-    <div class="max-w-3xl mx-auto px-6">
-      <h1 class="text-5xl font-bold mb-6">Welcome to Undercoded</h1>
-      <p class="text-lg mb-8">A next-gen platform to connect, create, and discover with ease.</p>
-      <a href="#features" class="px-6 py-3 bg-white text-blue-600 rounded-xl font-semibold shadow hover:bg-gray-100 transition">Explore Features</a>
-    </div>
-  </section>
+  <!-- Spacer for fixed header -->
+  <div class="h-16"></div>
 
-  <!-- Features -->
-  <section id="features" class="py-20 bg-gray-100">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12">Features</h2>
-      <div class="grid md:grid-cols-3 gap-8 text-center">
-        
-        <!-- Feature 1 -->
-        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" 
-               class="rounded-xl mb-4 mx-auto shadow" alt="Global Reach">
-          <h3 class="text-xl font-semibold mb-2">Global Reach</h3>
-          <p class="text-gray-600">Connect with millions worldwide instantly.</p>
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+  <section class="relative">
+    <!-- Background image -->
+    <img
+      src="https://images.unsplash.com/photo-1496346651079-6ca5cb67f42f?auto=format&fit=crop&w=1600&q=80"
+      alt="Creative backdrop"
+      class="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none select-none"
+      loading="eager"
+    />
+    <div class="relative max-w-7xl mx-auto px-6 py-24 lg:py-32 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+          Create. Inspire. <span class="underline decoration-black underline-offset-4">Belong.</span>
+        </h1>
+        <p class="mt-5 text-lg text-gray-700">
+          Undercoded is the home for modern creators. Build your audience, launch your portfolio,
+          and discover a world that gets your vibe.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <button onclick="openJoinModal()" class="px-6 py-3 rounded-full bg-black text-white hover:bg-gray-900 shadow transition">
+            Get Started — It’s Free
+          </button>
+          <a href="#features" class="px-6 py-3 rounded-full border border-black hover:bg-black hover:text-white transition">
+            Explore Features
+          </a>
         </div>
 
-        <!-- Feature 2 -->
-        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" 
-               class="rounded-xl mb-4 mx-auto shadow" alt="Built for Artists">
-          <h3 class="text-xl font-semibold mb-2">Built for Artists</h3>
-          <p class="text-gray-600">Showcase your creativity with style.</p>
+        <!-- Social proof logos -->
+        <div class="mt-10">
+          <p class="text-sm text-gray-500">Trusted by teams & creators from</p>
+          <div class="mt-3 grid grid-cols-3 sm:grid-cols-6 gap-6 items-center opacity-80 shine">
+            <div class="text-center text-xs">Studio K</div>
+            <div class="text-center text-xs">Hexagon</div>
+            <div class="text-center text-xs">Pixel &amp; Co.</div>
+            <div class="text-center text-xs">FrameLab</div>
+            <div class="text-center text-xs">Nova</div>
+            <div class="text-center text-xs">Axiome</div>
+          </div>
         </div>
+      </div>
 
-        <!-- Feature 3 -->
-        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
-          <img src="https://images.unsplash.com/photo-1508931132048-61f7f07e99c2" 
-               class="rounded-xl mb-4 mx-auto shadow" alt="Smart Discovery">
-          <h3 class="text-xl font-semibold mb-2">Smart Discovery</h3>
-          <p class="text-gray-600">Find content you’ll truly love with AI-powered feeds.</p>
+      <!-- Mockup image -->
+      <div class="reveal">
+        <div class="relative mx-auto max-w-md">
+          <img
+            src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1000&q=80"
+            alt="App mockup"
+            class="rounded-2xl shadow-2xl border"
+          />
+          <div class="absolute -bottom-6 -left-6 bg-white border rounded-2xl p-4 shadow-xl w-64">
+            <p class="text-sm font-semibold">“The growth here is unreal.”</p>
+            <p class="text-sm text-gray-500 mt-1">— Chen L., Photographer</p>
+          </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="py-20">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-6">About Us</h2>
-      <p class="text-lg text-gray-700 leading-relaxed">
-        Undercoded is built to empower creators, innovators, and dreamers. Our mission is to 
-        provide tools that make sharing, discovering, and connecting seamless across the globe.
-      </p>
+  <!-- =========================================================
+       METRICS / STATS
+       ========================================================= -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+      <div class="reveal">
+        <div class="text-4xl font-black">2.1M+</div>
+        <div class="text-sm text-gray-600">Creators onboard</div>
+      </div>
+      <div class="reveal">
+        <div class="text-4xl font-black">180+</div>
+        <div class="text-sm text-gray-600">Countries represented</div>
+      </div>
+      <div class="reveal">
+        <div class="text-4xl font-black">9.7/10</div>
+        <div class="text-sm text-gray-600">Avg. community rating</div>
+      </div>
+      <div class="reveal">
+        <div class="text-4xl font-black">24ms</div>
+        <div class="text-sm text-gray-600">Median feed latency</div>
+      </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-20 bg-gray-100">
+  <!-- =========================================================
+       FEATURES
+       ========================================================= -->
+  <section id="features" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal text-center max-w-3xl mx-auto">
+        <h2 class="text-4xl font-extrabold tracking-tight">Why Undercoded?</h2>
+        <p class="text-gray-600 mt-3">
+          Tools you’ll actually love using, crafted with taste and performance.
+        </p>
+      </div>
+
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Feature card -->
+        <div class="reveal bg-white rounded-2xl shadow p-6 hover:shadow-lg transition">
+          <img
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800"
+            alt="Global Reach"
+            class="rounded-xl mb-4 mx-auto shadow"
+            loading="lazy"
+          />
+          <h3 class="text-xl font-semibold">Global Reach</h3>
+          <p class="text-gray-600 mt-2">
+            Share your story with audiences in 180+ countries, no algorithmic gatekeeping.
+          </p>
+        </div>
+
+        <div class="reveal bg-white rounded-2xl shadow p-6 hover:shadow-lg transition">
+          <img
+            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800"
+            alt="Built for Artists"
+            class="rounded-xl mb-4 mx-auto shadow"
+            loading="lazy"
+          />
+          <h3 class="text-xl font-semibold">Built for Artists</h3>
+          <p class="text-gray-600 mt-2">
+            Polish your portfolio with galleries, carousels, and beautiful layouts in minutes.
+          </p>
+        </div>
+
+        <div class="reveal bg-white rounded-2xl shadow p-6 hover:shadow-lg transition">
+          <img
+            src="https://images.unsplash.com/photo-1555617980-daccdc6a5f06?w=800"
+            alt="Smart Discovery"
+            class="rounded-xl mb-4 mx-auto shadow"
+            loading="lazy"
+          />
+          <h3 class="text-xl font-semibold">Smart Discovery</h3>
+          <p class="text-gray-600 mt-2">
+            AI-powered suggestions that actually get your taste — and find your people.
+          </p>
+        </div>
+
+        <!-- Extra features -->
+        <div class="reveal bg-white rounded-2xl shadow p-6 hover:shadow-lg transition">
+          <div class="flex items-center gap-3 mb-4">
+            <i data-feather="shield" class="w-5 h-5"></i>
+            <h3 class="text-xl font-semibold">Privacy-first</h3>
+          </div>
+          <p class="text-gray-600">
+            Granular controls, transparent defaults, and your data is always yours.
+          </p>
+        </div>
+
+        <div class="reveal bg-white rounded-2xl shadow p-6 hover:shadow-lg transition">
+          <div class="flex items-center gap-3 mb-4">
+            <i data-feather="zap" class="w-5 h-5"></i>
+            <h3 class="text-xl font-semibold">Blazing Fast</h3>
+          </div>
+          <p class="text-gray-600">
+            Optimized for speed and accessibility — because great design should feel effortless.
+          </p>
+        </div>
+
+        <div class="reveal bg-white rounded-2xl shadow p-6 hover:shadow-lg transition">
+          <div class="flex items-center gap-3 mb-4">
+            <i data-feather="heart" class="w-5 h-5"></i>
+            <h3 class="text-xl font-semibold">Community-first</h3>
+          </div>
+          <p class="text-gray-600">
+            Celebrate, collaborate, and commission with a culture that values creators.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       GALLERY / GRID
+       ========================================================= -->
+  <section id="gallery" class="py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal text-center max-w-3xl mx-auto">
+        <h2 class="text-4xl font-extrabold tracking-tight">Handpicked Gallery</h2>
+        <p class="text-gray-600 mt-3">A rotating selection from the community.</p>
+      </div>
+
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <!-- 12 images (Unsplash direct) -->
+        <img class="reveal rounded-xl object-cover w-full h-48" alt="Gallery 1" loading="lazy"
+             src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=600&q=80">
+        <img class="reveal rounded-xl object-cover w-full h-48" alt="Gallery 2" loading="lazy"
+             src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=600&q=80">
+        <img class="reveal rounded-xl object-cover w-full h-48" alt="Gallery 3" loading="lazy"
+             src="https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?auto=format&fit=crop&w=600&q=80">
+        <img class="reveal rounded-xl object-cover w-full h-48" alt="Gallery 4" loading="lazy"
+             src="https://images.unsplash.com/photo-1475724017904-b712052c192a?auto=format&fit=crop&w=600&q=80">
+
+        <img class="reveal rounded-xl object-cover w-full h-48" alt="Gallery 5" loading="lazy"
+             src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=600&q=80">
+        <img class="reveal rounded-xl object-cover w-full h-48" alt="Gallery 6" loading="lazy"
+             src="https://images.unsplash.com/photo-1520697222863-7b59f4f0b2f4?auto=format&fit=crop&w=600&q=80">
+        <img class="reveal rounded-xl object-cover w-full h-48" alt="Gallery 7" loading="lazy"
+             src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80">
+        <img class="reveal rounded-xl object-cover w-full h-48" alt="Gallery 8" loading="lazy"
+             src="https://images.unsplash.com/photo-1459663148042-6f2c1b8c6ab3?auto=format&fit=crop&w=600&q=80">
+
+        <img class="reveal rounded-xl object-cover w-full h-48" alt="Gallery 9" loading="lazy"
+             src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=600&q=80">
+        <img class="reveal rounded-xl object-cover w-full h-48" alt="Gallery 10" loading="lazy"
+             src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80">
+        <img class="reveal rounded-xl object-cover w-full h-48" alt="Gallery 11" loading="lazy"
+             src="https://images.unsplash.com/photo-1498656302941-1c6573a622e6?auto=format&fit=crop&w=600&q=80">
+        <img class="reveal rounded-xl object-cover w-full h-48" alt="Gallery 12" loading="lazy"
+             src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80">
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="#" onclick="openJoinModal()" class="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-black hover:bg-black hover:text-white transition">
+          Submit your work <i data-feather="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       TESTIMONIALS (Carousel)
+       ========================================================= -->
+  <section class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal text-center max-w-3xl mx-auto">
+        <h2 class="text-4xl font-extrabold tracking-tight">Loved by Creators</h2>
+        <p class="text-gray-600 mt-3">Here’s what our community is saying.</p>
+      </div>
+
+      <div class="mt-12 bg-white rounded-2xl border shadow relative overflow-hidden">
+        <div id="testimonialTrack" class="carousel-track">
+          <!-- Slide 1 -->
+          <div class="min-w-full p-10 grid md:grid-cols-5 gap-8 items-center">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=60"
+                 alt="Sarah" class="md:col-span-2 rounded-2xl object-cover h-64 w-full">
+            <div class="md:col-span-3">
+              <p class="text-xl font-semibold">“This platform connects me to the world like no other.”</p>
+              <p class="text-gray-600 mt-2">— Sarah K., Visual Designer</p>
+              <div class="mt-4 flex items-center gap-1 text-amber-500">
+                <i data-feather="star" class="w-5 h-5"></i>
+                <i data-feather="star" class="w-5 h-5"></i>
+                <i data-feather="star" class="w-5 h-5"></i>
+                <i data-feather="star" class="w-5 h-5"></i>
+                <i data-feather="star" class="w-5 h-5"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="min-w-full p-10 grid md:grid-cols-5 gap-8 items-center">
+            <img src="https://images.unsplash.com/photo-1603415526960-f7e0328d13d1?auto=format&fit=crop&w=400&q=60"
+                 alt="Ravi" class="md:col-span-2 rounded-2xl object-cover h-64 w-full">
+            <div class="md:col-span-3">
+              <p class="text-xl font-semibold">“Perfect for sharing my art and finding inspiration daily.”</p>
+              <p class="text-gray-600 mt-2">— Ravi M., Illustrator</p>
+              <div class="mt-4 flex items-center gap-1 text-amber-500">
+                <i data-feather="star" class="w-5 h-5"></i>
+                <i data-feather="star" class="w-5 h-5"></i>
+                <i data-feather="star" class="w-5 h-5"></i>
+                <i data-feather="star" class="w-5 h-5"></i>
+                <i data-feather="star" class="w-5 h-5"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="min-w-full p-10 grid md:grid-cols-5 gap-8 items-center">
+            <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=400&q=60"
+                 alt="Chen" class="md:col-span-2 rounded-2xl object-cover h-64 w-full">
+            <div class="md:col-span-3">
+              <p class="text-xl font-semibold">“The growth I’ve seen here is unreal.”</p>
+              <p class="text-gray-600 mt-2">— Chen L., Photographer</p>
+              <div class="mt-4 flex items-center gap-1 text-amber-500">
+                <i data-feather="star" class="w-5 h-5"></i>
+                <i data-feather="star" class="w-5 h-5"></i>
+                <i data-feather="star" class="w-5 h-5"></i>
+                <i data-feather="star" class="w-5 h-5"></i>
+                <i data-feather="star" class="w-5 h-5"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <button id="prevTestimonial" class="absolute top-1/2 -translate-y-1/2 left-3 h-10 w-10 rounded-full bg-black/80 text-white grid place-items-center hover:bg-black">
+          <i data-feather="chevron-left" class="w-5 h-5"></i>
+        </button>
+        <button id="nextTestimonial" class="absolute top-1/2 -translate-y-1/2 right-3 h-10 w-10 rounded-full bg-black/80 text-white grid place-items-center hover:bg-black">
+          <i data-feather="chevron-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       PRICING
+       ========================================================= -->
+  <section id="pricing" class="py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal text-center max-w-3xl mx-auto">
+        <h2 class="text-4xl font-extrabold">Pricing that scales with you</h2>
+        <p class="text-gray-600 mt-3">Start free. Upgrade when you’re ready.</p>
+      </div>
+
+      <div class="mt-12 grid md:grid-cols-3 gap-8">
+        <!-- Free -->
+        <div class="reveal bg-white rounded-2xl shadow p-8 border">
+          <div class="text-sm font-semibold uppercase text-gray-500">Starter</div>
+          <div class="mt-4 text-4xl font-black">$0</div>
+          <div class="text-sm text-gray-500">/ forever</div>
+          <ul class="mt-6 space-y-3 text-sm">
+            <li class="flex items-center gap-2"><i data-feather="check" class="w-4 h-4 text-emerald-600"></i> Portfolio pages</li>
+            <li class="flex items-center gap-2"><i data-feather="check" class="w-4 h-4 text-emerald-600"></i> Basic analytics</li>
+            <li class="flex items-center gap-2"><i data-feather="x" class="w-4 h-4 text-gray-400"></i> Advanced branding</li>
+            <li class="flex items-center gap-2"><i data-feather="x" class="w-4 h-4 text-gray-400"></i> Pro insights</li>
+          </ul>
+          <button onclick="openJoinModal()" class="mt-8 w-full rounded-full border border-black py-3 hover:bg-black hover:text-white transition">Get Started</button>
+        </div>
+
+        <!-- Pro -->
+        <div class="reveal bg-black text-white rounded-2xl shadow-xl p-8 border-2 border-black relative">
+          <div class="absolute -top-3 right-6 text-xs bg-white text-black px-3 py-1 rounded-full border">Most Popular</div>
+          <div class="text-sm font-semibold uppercase text-gray-300">Pro</div>
+          <div class="mt-4 text-4xl font-black">$9</div>
+          <div class="text-sm text-gray-300">/ month</div>
+          <ul class="mt-6 space-y-3 text-sm">
+            <li class="flex items-center gap-2"><i data-feather="check" class="w-4 h-4 text-emerald-400"></i> Custom domain</li>
+            <li class="flex items-center gap-2"><i data-feather="check" class="w-4 h-4 text-emerald-400"></i> Advanced branding</li>
+            <li class="flex items-center gap-2"><i data-feather="check" class="w-4 h-4 text-emerald-400"></i> Detailed analytics</li>
+            <li class="flex items-center gap-2"><i data-feather="check" class="w-4 h-4 text-emerald-400"></i> Priority support</li>
+          </ul>
+          <button onclick="openJoinModal()" class="mt-8 w-full rounded-full bg-white text-black py-3 hover:opacity-90 transition">Upgrade to Pro</button>
+        </div>
+
+        <!-- Studio -->
+        <div class="reveal bg-white rounded-2xl shadow p-8 border">
+          <div class="text-sm font-semibold uppercase text-gray-500">Studio</div>
+          <div class="mt-4 text-4xl font-black">$29</div>
+          <div class="text-sm text-gray-500">/ month</div>
+          <ul class="mt-6 space-y-3 text-sm">
+            <li class="flex items-center gap-2"><i data-feather="check" class="w-4 h-4 text-emerald-600"></i> Team accounts</li>
+            <li class="flex items-center gap-2"><i data-feather="check" class="w-4 h-4 text-emerald-600"></i> Collaboration tools</li>
+            <li class="flex items-center gap-2"><i data-feather="check" class="w-4 h-4 text-emerald-600"></i> Unlimited projects</li>
+            <li class="flex items-center gap-2"><i data-feather="check" class="w-4 h-4 text-emerald-600"></i> Dedicated success mgr</li>
+          </ul>
+          <button onclick="openJoinModal()" class="mt-8 w-full rounded-full border border-black py-3 hover:bg-black hover:text-white transition">Talk to Sales</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FAQ
+       ========================================================= -->
+  <section id="faq" class="py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="reveal text-center">
+        <h2 class="text-4xl font-extrabold">Frequently Asked Questions</h2>
+        <p class="text-gray-600 mt-3">Quick answers to common questions.</p>
+      </div>
+
+      <div class="mt-12 space-y-4">
+        <!-- FAQ item -->
+        <div class="reveal faq-item border rounded-xl p-5">
+          <button class="w-full flex items-center justify-between text-left">
+            <span class="text-lg font-semibold">Is Undercoded free to start?</span>
+            <i data-feather="chevron-down" class="w-5 h-5"></i>
+          </button>
+          <div class="faq-answer">
+            <p class="pt-3 text-gray-600">
+              Yes! The Starter plan is free forever. Upgrade only if you want custom domains,
+              advanced branding, or pro analytics.
+            </p>
+          </div>
+        </div>
+
+        <div class="reveal faq-item border rounded-xl p-5">
+          <button class="w-full flex items-center justify-between text-left">
+            <span class="text-lg font-semibold">Can I import my existing portfolio?</span>
+            <i data-feather="chevron-down" class="w-5 h-5"></i>
+          </button>
+          <div class="faq-answer">
+            <p class="pt-3 text-gray-600">
+              Absolutely. Import from popular platforms or upload assets directly. Our importer
+              keeps your structure intact.
+            </p>
+          </div>
+        </div>
+
+        <div class="reveal faq-item border rounded-xl p-5">
+          <button class="w-full flex items-center justify-between text-left">
+            <span class="text-lg font-semibold">How is my data secured?</span>
+            <i data-feather="chevron-down" class="w-5 h-5"></i>
+          </button>
+          <div class="faq-answer">
+            <p class="pt-3 text-gray-600">
+              We use industry-best practices including encryption at rest and in transit,
+              granular privacy controls, and transparent data policies.
+            </p>
+          </div>
+        </div>
+
+        <div class="reveal faq-item border rounded-xl p-5">
+          <button class="w-full flex items-center justify-between text-left">
+            <span class="text-lg font-semibold">Do you offer student discounts?</span>
+            <i data-feather="chevron-down" class="w-5 h-5"></i>
+          </button>
+          <div class="faq-answer">
+            <p class="pt-3 text-gray-600">
+              Yes — students and educators get 30% off Pro and Studio plans. Contact support
+              with your academic email.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       NEWSLETTER / CTA
+       ========================================================= -->
+  <section class="py-24 bg-black text-white">
     <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-6">Get in Touch</h2>
-      <p class="mb-8 text-gray-700">We’d love to hear from you! Send us a message anytime.</p>
-      <form class="max-w-xl mx-auto text-left bg-white p-8 rounded-2xl shadow">
-        <input type="text" placeholder="Your Name" class="w-full p-3 border rounded-lg mb-4">
-        <input type="email" placeholder="Your Email" class="w-full p-3 border rounded-lg mb-4">
-        <textarea placeholder="Your Message" class="w-full p-3 border rounded-lg mb-4"></textarea>
-        <button class="w-full bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:bg-blue-700 transition">Send Message</button>
+      <div class="reveal">
+        <h2 class="text-4xl font-extrabold">Get early features and drops</h2>
+        <p class="text-gray-300 mt-3">
+          Join our newsletter for exclusive invites, beta access, and creator spotlights.
+        </p>
+        <form class="mt-8 grid sm:grid-cols-[1fr_auto] gap-3 max-w-2xl mx-auto">
+          <input type="email" required placeholder="your@email.com"
+                 class="px-4 py-3 rounded-xl text-black outline-none">
+          <button type="submit" class="px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-gray-200 transition">
+            Subscribe
+          </button>
+        </form>
+        <p class="text-xs text-gray-400 mt-3">We respect your inbox. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       BLOG PREVIEWS
+       ========================================================= -->
+  <section id="blog" class="py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal text-center max-w-3xl mx-auto">
+        <h2 class="text-4xl font-extrabold">From the blog</h2>
+        <p class="text-gray-600 mt-3">Insights, interviews, and inspiration for creators.</p>
+      </div>
+      <div class="mt-12 grid md:grid-cols-3 gap-8">
+        <!-- Post 1 -->
+        <article class="reveal bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition">
+          <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=1000&q=60"
+               alt="Blog 1" class="w-full h-52 object-cover">
+          <div class="p-6">
+            <h3 class="font-bold text-lg">Color theory for digital brands</h3>
+            <p class="mt-2 text-gray-600">Use palettes with intention — a practical guide for memorable visuals.</p>
+            <div class="mt-4 text-sm text-gray-500">8 min read</div>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="reveal bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition">
+          <img src="https://images.unsplash.com/photo-1475724017904-b712052c192a?auto=format&fit=crop&w=1000&q=60"
+               alt="Blog 2" class="w-full h-52 object-cover">
+          <div class="p-6">
+            <h3 class="font-bold text-lg">Telling your story, visually</h3>
+            <p class="mt-2 text-gray-600">Narrative frameworks to transform portfolios into experiences.</p>
+            <div class="mt-4 text-sm text-gray-500">6 min read</div>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="reveal bg-white rounded-2xl border overflow-hidden hover:shadow-lg transition">
+          <img src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?auto=format&fit=crop&w=1000&q=60"
+               alt="Blog 3" class="w-full h-52 object-cover">
+          <div class="p-6">
+            <h3 class="font-bold text-lg">The creator’s toolkit (2025)</h3>
+            <p class="mt-2 text-gray-600">Modern tools we love for ideation, publishing, and growth.</p>
+            <div class="mt-4 text-sm text-gray-500">9 min read</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CONTACT
+       ========================================================= -->
+  <section id="contact" class="py-24">
+    <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
+      <div class="reveal">
+        <h2 class="text-4xl font-extrabold">Say hello 👋</h2>
+        <p class="text-gray-600 mt-3">
+          Questions, partnerships, press — we’d love to hear from you.
+        </p>
+        <div class="mt-6 space-y-3 text-sm">
+          <p class="flex items-center gap-2"><i data-feather="mail" class="w-4 h-4"></i> hello@undercoded.app</p>
+          <p class="flex items-center gap-2"><i data-feather="map-pin" class="w-4 h-4"></i> Remote • Worldwide</p>
+          <p class="flex items-center gap-2"><i data-feather="clock" class="w-4 h-4"></i> Mon–Fri, 9am–6pm</p>
+        </div>
+      </div>
+
+      <form class="reveal bg-white rounded-2xl border p-6 shadow space-y-4">
+        <div class="grid sm:grid-cols-2 gap-3">
+          <input required type="text" placeholder="First name" class="px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-black/20">
+          <input required type="text" placeholder="Last name" class="px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-black/20">
+        </div>
+        <input required type="email" placeholder="Email address" class="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-black/20">
+        <textarea required placeholder="Your message" class="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-black/20 h-32"></textarea>
+        <button type="submit" class="w-full px-6 py-3 rounded-xl bg-black text-white hover:bg-gray-900 transition">Send Message</button>
+        <p class="text-xs text-gray-500">By submitting, you agree to our terms and privacy policy.</p>
       </form>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-6 bg-white shadow text-center text-gray-600">
-    © 2025 Undercoded. All rights reserved.
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="bg-gray-100 border-t">
+    <div class="max-w-7xl mx-auto px-6 py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-grid place-items-center h-9 w-9 rounded-xl bg-black text-white">U</span>
+          <span class="font-extrabold tracking-tight text-lg">undercoded</span>
+        </div>
+        <p class="text-gray-600 mt-4 text-sm">
+          A tasteful, fast home for your creative work.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Product</h4>
+        <ul class="mt-3 space-y-2 text-sm text-gray-600">
+          <li><a href="#features" class="hover:text-black">Features</a></li>
+          <li><a href="#pricing" class="hover:text-black">Pricing</a></li>
+          <li><a href="#gallery" class="hover:text-black">Showcase</a></li>
+          <li><a href="#faq" class="hover:text-black">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Company</h4>
+        <ul class="mt-3 space-y-2 text-sm text-gray-600">
+          <li><a href="#blog" class="hover:text-black">Blog</a></li>
+          <li><a href="#contact" class="hover:text-black">Contact</a></li>
+          <li><a href="#" class="hover:text-black">Careers</a></li>
+          <li><a href="#" class="hover:text-black">Press</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Legal</h4>
+        <ul class="mt-3 space-y-2 text-sm text-gray-600">
+          <li><a href="#" class="hover:text-black">Privacy</a></li>
+          <li><a href="#" class="hover:text-black">Terms</a></li>
+          <li><a href="#" class="hover:text-black">Security</a></li>
+          <li><a href="#" class="hover:text-black">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t">
+      <div class="max-w-7xl mx-auto px-6 py-6 text-xs text-gray-500 flex flex-wrap items-center justify-between gap-3">
+        <p>© 2025 Undercoded. All rights reserved.</p>
+        <div class="flex items-center gap-3">
+          <a href="#" class="hover:text-black"><i data-feather="twitter" class="w-4 h-4"></i></a>
+          <a href="#" class="hover:text-black"><i data-feather="instagram" class="w-4 h-4"></i></a>
+          <a href="#" class="hover:text-black"><i data-feather="youtube" class="w-4 h-4"></i></a>
+        </div>
+      </div>
+    </div>
   </footer>
 
+  <!-- =========================================================
+       MODALS: LOGIN / SIGNUP
+       ========================================================= -->
+  <!-- Login Modal -->
+  <div id="loginModal" class="fixed inset-0 hidden z-[60]">
+    <div class="absolute inset-0 bg-black/60" onclick="closeLoginModal()" aria-hidden="true"></div>
+    <div class="relative z-[61] max-w-md mx-auto mt-24 bg-white rounded-2xl shadow-xl p-6">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-bold">Log In</h3>
+        <button onclick="closeLoginModal()" class="p-1 rounded hover:bg-gray-100" aria-label="Close login"><i data-feather="x"></i></button>
+      </div>
+      <div class="mt-4 space-y-3">
+        <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-black/20">
+        <input type="password" placeholder="Password" class="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-black/20">
+        <button class="w-full px-6 py-3 rounded-xl bg-black text-white hover:bg-gray-900">Log In</button>
+        <p class="text-xs text-gray-500 text-center">Forgot password?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Join Modal -->
+  <div id="joinModal" class="fixed inset-0 hidden z-[60]">
+    <div class="absolute inset-0 bg-black/60" onclick="closeJoinModal()" aria-hidden="true"></div>
+    <div class="relative z-[61] max-w-md mx-auto mt-24 bg-white rounded-2xl shadow-xl p-6">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-bold">Create your account</h3>
+        <button onclick="closeJoinModal()" class="p-1 rounded hover:bg-gray-100" aria-label="Close signup"><i data-feather="x"></i></button>
+      </div>
+      <div class="mt-4 space-y-3">
+        <input type="text" placeholder="Username" class="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-black/20">
+        <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-black/20">
+        <input type="password" placeholder="Password" class="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-black/20">
+        <button class="w-full px-6 py-3 rounded-xl bg-black text-white hover:bg-gray-900">Sign Up</button>
+        <p class="text-xs text-gray-500 text-center">By creating an account, you agree to our terms and privacy policy.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       SCRIPTS
+       ========================================================= -->
+  <script>
+    // Feather icons
+    feather.replace();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries, ob) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('show');
+          ob.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.18 });
+    reveals.forEach(el => io.observe(el));
+
+    // Modals
+    const loginModal = document.getElementById('loginModal');
+    const joinModal  = document.getElementById('joinModal');
+    function openLoginModal() { loginModal.classList.remove('hidden'); }
+    function closeLoginModal() { loginModal.classList.add('hidden'); }
+    function openJoinModal()  { joinModal.classList.remove('hidden'); }
+    function closeJoinModal() { joinModal.classList.add('hidden'); }
+    window.openLoginModal = openLoginModal;
+    window.closeLoginModal = closeLoginModal;
+    window.openJoinModal = openJoinModal;
+    window.closeJoinModal = closeJoinModal;
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item > button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const parent = btn.closest('.faq-item');
+        parent.classList.toggle('open');
+      });
+    });
+
+    // Testimonials carousel
+    const track = document.getElementById('testimonialTrack');
+    const prev = document.getElementById('prevTestimonial');
+    const next = document.getElementById('nextTestimonial');
+    let index = 0;
+    function updateCarousel() {
+      const width = track.clientWidth;
+      track.style.transform = `translateX(-${index * width}px)`;
+    }
+    next.addEventListener('click', () => {
+      index = (index + 1) % 3;
+      updateCarousel();
+    });
+    prev.addEventListener('click', () => {
+      index = (index + 2) % 3; // go backwards
+      updateCarousel();
+    });
+    window.addEventListener('resize', updateCarousel);
+  </script>
 </body>
 </html>
